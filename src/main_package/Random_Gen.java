@@ -6,13 +6,13 @@ import java.util.Random;
 public class Random_Gen {
 	/* Atributos */
 	Random rand = new Random();
-	Integer[] rnd_list = new Integer[10000];
+	Integer[] rnd_list = new Integer[3000];
 	
 
-	public void RandomFill(){
+	public Integer[] RandomFill(){
 	/* Se generan 3000 numeros pseudo random */
 		int rnd_value;
-		for(int i=0; i<10000; i++){
+		for(int i=0; i<3000; i++){
 			rnd_value = rand.nextInt(10000)+1;
 			rnd_list[i] = rnd_value;
 		}
@@ -27,7 +27,8 @@ public class Random_Gen {
 	catch(IOException e){
 		System.out.println("Ups! No ha sido posible guardar los numeros.");
 	}
+	return rnd_list;
 	}
 	
-
-}
+	
+	}
