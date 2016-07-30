@@ -1,7 +1,14 @@
 package main_package;
 
+/**
+ * @author Diego Soler, Fredy Espana, Marlon Hernandez, Rodolfo Cacacho
+ * Clase Sort
+ * Clase que maneja los diferentes tipos de ordenamiento
+ * @version 30/07/2016
+ */
+
 public class Sort {
-	
+
 	public void selectionSort(Integer[] list){
 		int minNumber = 0;
 		
@@ -20,21 +27,73 @@ public class Sort {
 			System.out.println(list[i]);
 		}
 		}
-		
-		
-    public void insertionSort(Integer[] list) {
-        // TODO implement here
-        return null;
+	
+	
+//-------------------------------- EL mergeSort se divide en dos metodos ------------------------------------
+	
+   
+//--------------------------------BARRA ESPACIADORA-----------------------------------------------------------
+	
+	public Integer [] mergeSort(Integer [] lista){
+    
+    //Si la lista tiene menos de 1 o menos elementos, no vale la pena ordenarla
+    if (lista.length <=1){
+       	 return lista;
+        }
+        
+      //Se divide el array en dos partes, no importando si es numero impar
+      Integer[] part1 = new Integer[lista.length/2];
+      Integer[] part2 = new Integer[lista.length-part1.length];
+      //Aqui se utiliza el metodo ArrayCopy, que permite copiar arrays de uno a otro desde ciertas posiciones indicadas
+      //Se copia el array original en las dos mitades, hasta la posicion que llega la division de la parte correspondiente
+      System.arraycopy(lista, 0, part1, 0, part1.length);
+      System.arraycopy(lista, part1.length, part2, 0,part2.length);
+      
+      //Recursivamente se divide nuevamente cada mitad
+      mergeSort(part1);
+      mergeSort(part2);
+      
+      //Metodo que la ordena
+      merge(part1,part2,lista);
+      return lista;
     }
 
-    /**
-     * @param List[int] 
-     * @return
-     */
-    public void mergeSort(Integer[] list) {
-        // TODO implement here
-        return null;
+	
+    
+    public void merge(Integer[] part1, Integer[] part2,  Integer[] resultado){
+    	
+    	//Llevan la cuenta de la posicion de cada array
+    	int array1 = 0;
+    	int array2 = 0;
+    	int merged = 0;
+    	
+    	//Ciclo mientras las posiciones sigan en cada una de las listas
+    	while(array1<part1.length && array2<part2.length){
+    		
+    			//Aqui se compara cada posicion en los dos arrays finales (que en algun instante seran de un elemento) y los introduce al array ordenado
+    		if (part1[array1].compareTo(part2[array2]) < 0){
+    			resultado[merged] = part1[array1];
+    			array1++;
+    		}
+    		
+    		else{
+    			
+    			resultado[merged] = part2[array2];
+    			array2++;
+    		}
+    		
+    		merged++;
+    	}
+    	
+    	//Se copia cada parte al array final
+    	System.arraycopy(part1, array1, resultado, merged, part1.length-array1);
+    	System.arraycopy(part2, array2, resultado, merged, part2.length-array2);
+    		
+    		
     }
+    
+  //--------------------------------BARRA ESPACIADORA-----------------------------------------------------------
+    
 
 
 /*metodo de recursion, se convierten en dos listas con un pivote. 
@@ -84,8 +143,5 @@ La primera instancia se toma 0 como max y el ultimo valor como min*/
         return min;
     }
     
-    public void radixSort(Integer[] list) {
-        // TODO implement here
-        return null;
-    }
+    
 }
