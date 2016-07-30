@@ -20,4 +20,37 @@ public class Sort {
 			System.out.println(list[i]);
 		}
 		}
+		
+		
+    public void insertionSort(Integer[] list) {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * @param List[int] 
+     * @return
+     */
+    public void mergeSort(Integer[] list) {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * @param List[int] 
+     * @return
+     */
+    public void quickSort(Integer[] list) {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * @param List[int] 
+     * @return
+     */
+    public void radixSort(Integer[] list) {
+        // TODO implement here
+        return null;
+    }
 }
