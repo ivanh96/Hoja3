@@ -91,7 +91,7 @@ public class Sort {
     		
     }
     
-  //--------------------------------BARRA ESPACIADORA-----------------------------------------------------------
+//--------------------------------BARRA ESPACIADORA-----------------------------------------------------------
     
 
 
@@ -141,7 +141,11 @@ La primera instancia se toma 0 como max y el ultimo valor como min*/
         }
         return min;
     }
+    /*consultado dehttp://www.java67.com/2014/07/quicksort-algorithm-in-java-in-place-example.html*/
     
+  //--------------------------------BARRA ESPACIADORA-----------------------------------------------------------
+
+
         // El metodo insertionSort ordena de izquierda a derecha, escogiendo un valor y comparandolo con el
         // siguiente, si este es menor, lo inserta en la posicion anterior y el otro a la siguiente.
     	public Integer[] insertionSort(Integer[] list){
@@ -158,6 +162,53 @@ La primera instancia se toma 0 como max y el ultimo valor como min*/
                 }
             return list;
 	}
-    
-    
+
+/*consultado de http://www.sourcecodesworld.com/articles/java/java-data-structures/Radix_sort.asp*/
+
+    public Integer[] radixSort( Integer[] list){
+
+        Integer[][] bucket = new Integer[list.length][2];
+        Integer[] tmp = new Integer[list.length];
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        int l = 0;
+        int f = 0;
+
+        for(k=0;k<4;k++){
+            for(i=0;i<(bucket.length-1);i++){
+                bucket[i][1] = i+1;
+            }
+            bucket[i][1] = -1;
+            for(i=0;i<tmp.length;i++){
+                tmp[i] = -1;
+            }
+
+            for(f=i=0;i<list.length;i++){
+                j = ((0xFF<<(k<<3))&list[i])>>(k<<3);
+                if(tmp[j] == -1){
+                    l = tmp[j] = f;
+                }else{
+                    l = tmp[j];
+                    while(bucket[l][1] != -1){
+                        l = bucket[l][1];
+                    }
+
+                    bucket[l][1] = f;
+                    l = bucket[l][1];
+                }
+
+                f = bucket[f][1];
+                bucket[l][0] = list[i];
+                bucket[l][1] = -1;
+            }
+
+            for(l=tmp[i=j=0];i<list.length;i++){
+                for(l=tmp[i];l!=-1;l=bucket[l][1]){
+                        list[j++] = bucket[l][0];
+                }
+            }
+        }
+        return list;
+    }
 }
