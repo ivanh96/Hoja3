@@ -5,7 +5,7 @@
  * @version 30/07/2016
  */
 
-public class Sort {
+public class Sort{
 
 
 	public Integer [] selectionSort(Integer[] list){
